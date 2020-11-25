@@ -271,7 +271,7 @@ function movieOnClick(movie){
         }
         console.log(body)
           
-        httpPost("http://localhost:3000/recommend", body)
+        httpPost("http://localhost:3000/recommend", JSON.stringify(body))
     }
 }
 // When the user clicks anywhere outside of the modal, close it
@@ -322,7 +322,7 @@ function httpPost(theUrl, body)
     xmlhttpP.setRequestHeader("Access-Control-Allow-Origin","*")
     xmlhttpP.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-Width, Content-Type, Accept")
           
-    //xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xmlhttpP.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xmlhttpP.send(body);
     xmlhttpP.onload = () => {
         console.log(xmlhttpP.responseText)
