@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./mainpage-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -17,116 +18,80 @@
             </div>
         </div>
         <div class="main-content-container">
-            <div class="content-header">
-                History
-            </div>
-            <div class="history-content">
-                <div class="sub-content">
-                    <div class="movie-detail-container">
-                        <img src="./img/moonlight.jpg">
-                        <div class="movie-details">
-                            <div class="movie-detail" >
-                                Movie Title: 
-                                <span id="movie-title">
-                                    Moonlight
-                                </span>
-                            </div>
-                            <div class="movie-detail" >
-                                Genre: 
-                                <span id="movie-genre">
-                                    Drama, LGBT, Comedy
-                                </span>
-                            </div>
-                            <div class="movie-detail" id="movie-director">
-                                Director:
-                                <span id="movie-genre">
-                                    Barry Jenkins
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="movie-detail-container">
-                        <img src="./img/moonlight.jpg">
-                        <div class="movie-details">
-                            <div class="movie-detail" >
-                                Movie Title: 
-                                <span id="movie-title">
-                                    Moonlight
-                                </span>
-                            </div>
-                            <div class="movie-detail" >
-                                Genre: 
-                                <span id="movie-genre">
-                                    Drama, LGBT, Comedy
-                                </span>
-                            </div>
-                            <div class="movie-detail" id="movie-director">
-                                Director:
-                                <span id="movie-genre">
-                                    Barry Jenkins
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+            <div class="content-header-container">
+                <div class="content-header">
+                    Movie List
                 </div>
-                <div class="sub-content">
-                    <div class="movie-detail-container">
-                        <img src="./img/moonlight.jpg">
-                        <div class="movie-details">
-                            <div class="movie-detail" >
-                                Movie Title: 
-                                <span id="movie-title">
-                                    Moonlight
-                                </span>
-                            </div>
-                            <div class="movie-detail" >
-                                Genre: 
-                                <span id="movie-genre">
-                                    Drama, LGBT, Comedy
-                                </span>
-                            </div>
-                            <div class="movie-detail" id="movie-director">
-                                Director:
-                                <span id="movie-genre">
-                                    Barry Jenkins
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="movie-detail-container">
-                        <img src="./img/moonlight.jpg">
-                        <div class="movie-details">
-                            <div class="movie-detail" >
-                                Movie Title: 
-                                <span id="movie-title">
-                                    Moonlight
-                                </span>
-                            </div>
-                            <div class="movie-detail" >
-                                Genre: 
-                                <span id="movie-genre">
-                                    Drama, LGBT, Comedy
-                                </span>
-                            </div>
-                            <div class="movie-detail" id="movie-director">
-                                Director:
-                                <span id="movie-genre">
-                                    Barry Jenkins
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="content-header" id="historybtn">
+                    History
                 </div>
-                
             </div>
-        </div>
-        <div class="main-content-container">
-            <div class="content-header">
-                Recommendation
+            
+            <div class="recommend-content">
+                <div class="movie-detail-container" data-value="" onclick=movieOnClick(this)>
+                    <img src="./img/moonlight.jpg">
+                    <div class="movie-details">
+                        <div class="movie-detail" >
+                            Movie Title: 
+                            <span id="movie-title">
+                                Moonlight
+                            </span>
+                        </div>
+                        <div class="movie-detail" >
+                            Genre: 
+                            <span id="movie-genre">
+                                Drama, LGBT, Comedy
+                            </span>
+                        </div>
+                        <div class="movie-detail" >
+                            Year:
+                            <span id="movie-year">
+                                2016
+                            </span>
+                        </div>
+                        <div class="movie-detail" >
+                            Language:
+                            <span id="movie-language">
+                                English
+                            </span>
+                        </div>
+                    </div>
+                    <br><br>
+                </div>
+                <div class="movie-detail-container"  onclick=movieOnClick(this)>
+                    <img id="movie-img-1" src="./img/moonlight.jpg">
+                    <div class="movie-details">
+                        <div class="movie-detail" >
+                            Movie Title: 
+                            <span id="movie-title">
+                                Moonlight
+                            </span>
+                        </div>
+                        <div class="movie-detail" >
+                            Genre: 
+                            <span id="movie-genre">
+                                Drama, LGBT, Comedy
+                            </span>
+                        </div>
+                        <div class="movie-detail">
+                        Year:
+                        <span id="movie-year">
+                            2016
+                        </span>
+                    </div>
+                    <div class="movie-detail" >
+                        Language:
+                        <span id="movie-language">
+                            English
+                        </span>
+                    </div>
+                    </div>
+                    <br><br>
+                </div>
             </div>
             <div class="recommend-content">
-                <div class="movie-detail-container">
-                    <img src="./img/moonlight.jpg">
+                <div class="movie-detail-container"  onclick=movieOnClick(this)>
+                    <img id="movie-img-2" src="./img/moonlight.jpg">
                     <div class="movie-details">
                         <div class="movie-detail" >
                             Movie Title: 
@@ -140,20 +105,23 @@
                                 Drama, LGBT, Comedy
                             </span>
                         </div>
-                        <div class="movie-detail" id="movie-director">
-                            Director:
-                            <span id="movie-genre">
-                                Barry Jenkins
+                        <div class="movie-detail" >
+                            Year:
+                            <span id="movie-year">
+                                2016
+                            </span>
+                        </div>
+                        <div class="movie-detail" >
+                            Language:
+                            <span id="movie-language">
+                                English
                             </span>
                         </div>
                     </div>
-                    <div class="movie-option">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                    </div>
+                    <br><br>
                 </div>
-                <div class="movie-detail-container">
-                    <img src="./img/moonlight.jpg">
+                <div class="movie-detail-container"  onclick=movieOnClick(this)>
+                    <img id="movie-img-3" src="./img/moonlight.jpg">
                     <div class="movie-details">
                         <div class="movie-detail" >
                             Movie Title: 
@@ -167,21 +135,316 @@
                                 Drama, LGBT, Comedy
                             </span>
                         </div>
-                        <div class="movie-detail" id="movie-director">
-                            Director:
-                            <span id="movie-genre">
-                                Barry Jenkins
-                            </span>
-                        </div>
+                        <div class="movie-detail" >
+                        Year:
+                        <span id="movie-year">
+                            2016
+                        </span>
                     </div>
-                    <div class="movie-option">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                        <i class="fa fa-times" aria-hidden="true"></i>
+                    <div class="movie-detail" >
+                        Language:
+                        <span id="movie-language">
+                            English
+                        </span>
                     </div>
+                    </div>
+                    <br><br>
                 </div>
-                
             </div>
+
+            <div class="recommend-content">
+                <div class="movie-detail-container"  onclick=movieOnClick(this)>
+                    <img id="movie-img-4" src="./img/moonlight.jpg">
+                    <div class="movie-details">
+                        <div class="movie-detail" >
+                            Movie Title: 
+                            <span id="movie-title">
+                                Moonlight
+                            </span>
+                        </div>
+                        <div class="movie-detail" >
+                            Genre: 
+                            <span id="movie-genre">
+                                Drama, LGBT, Comedy
+                            </span>
+                        </div>
+                        <div class="movie-detail" >
+                            Year:
+                            <span id="movie-year">
+                                2016
+                            </span>
+                        </div>
+                        <div class="movie-detail" >
+                            Language:
+                            <span id="movie-language">
+                                English
+                            </span>
+                        </div>
+                    </div>
+                    <br><br>
+                </div>
+                <div class="movie-detail-container"  onclick=movieOnClick(this)>
+                    <img id="movie-img-5" src="./img/moonlight.jpg">
+                    <div class="movie-details">
+                        <div class="movie-detail" >
+                            Movie Title: 
+                            <span id="movie-title">
+                                Moonlight
+                            </span>
+                        </div>
+                        <div class="movie-detail" >
+                            Genre: 
+                            <span id="movie-genre">
+                                Drama, LGBT, Comedy
+                            </span>
+                        </div>
+                        <div class="movie-detail" >
+                        Year:
+                        <span id="movie-year">
+                            2016
+                        </span>
+                    </div>
+                    <div class="movie-detail" >
+                        Language:
+                        <span id="movie-language">
+                            English
+                        </span>
+                    </div>
+                    </div>
+                    <br><br>
+                </div>
+            </div>
+
+            <div class="recommend-content">
+                <div class="movie-detail-container"  onclick=movieOnClick(this)>
+                    <img id="movie-img-6" src="./img/moonlight.jpg">
+                    <div class="movie-details">
+                        <div class="movie-detail" >
+                            Movie Title: 
+                            <span id="movie-title">
+                                Moonlight
+                            </span>
+                        </div>
+                        <div class="movie-detail" >
+                            Genre: 
+                            <span id="movie-genre">
+                                Drama, LGBT, Comedy
+                            </span>
+                        </div>
+                        <div class="movie-detail" >
+                            Year:
+                            <span id="movie-year">
+                                2016
+                            </span>
+                        </div>
+                        <div class="movie-detail" >
+                            Language:
+                            <span id="movie-language">
+                                English
+                            </span>
+                        </div>
+                    </div>
+                    <br><br>
+                </div>
+                <div class="movie-detail-container"  onclick=movieOnClick(this)>
+                    <img id="movie-img-7" src="./img/moonlight.jpg">
+                    <div class="movie-details">
+                        <div class="movie-detail" >
+                            Movie Title: 
+                            <span id="movie-title">
+                                Moonlight
+                            </span>
+                        </div>
+                        <div class="movie-detail" >
+                            Genre: 
+                            <span id="movie-genre">
+                                Drama, LGBT, Comedy
+                            </span>
+                        </div>
+                        <div class="movie-detail" >
+                        Year:
+                        <span id="movie-year">
+                            2016
+                        </span>
+                    </div>
+                    <div class="movie-detail" >
+                        Language:
+                        <span id="movie-language">
+                            English
+                        </span>
+                    </div>
+                    </div>
+                    <br><br>
+                </div>
+            </div>
+
+            <div class="recommend-content">
+                <div class="movie-detail-container"  onclick=movieOnClick(this)>
+                    <img id="movie-img-8" src="./img/moonlight.jpg">
+                    <div class="movie-details">
+                        <div class="movie-detail" >
+                            Movie Title: 
+                            <span id="movie-title">
+                                Moonlight
+                            </span>
+                        </div>
+                        <div class="movie-detail" >
+                            Genre: 
+                            <span id="movie-genre">
+                                Drama, LGBT, Comedy
+                            </span>
+                        </div>
+                        <div class="movie-detail" >
+                            Year:
+                            <span id="movie-year">
+                                2016
+                            </span>
+                        </div>
+                        <div class="movie-detail" >
+                            Language:
+                            <span id="movie-language">
+                                English
+                            </span>
+                        </div>
+                    </div>
+                    <br><br>
+                </div>
+                <div class="movie-detail-container"  onclick=movieOnClick(this)>
+                    <img id="movie-img-9" src="./img/moonlight.jpg">
+                    <div class="movie-details">
+                        <div class="movie-detail" >
+                            Movie Title: 
+                            <span id="movie-title">
+                                Moonlight
+                            </span>
+                        </div>
+                        <div class="movie-detail" >
+                            Genre: 
+                            <span id="movie-genre">
+                                Drama, LGBT, Comedy
+                            </span>
+                        </div>
+                        <div class="movie-detail" >
+                        Year:
+                        <span id="movie-year">
+                            2016
+                        </span>
+                    </div>
+                    <div class="movie-detail" >
+                        Language:
+                        <span id="movie-language">
+                            English
+                        </span>
+                    </div>
+                    </div>
+                    <br><br>
+                </div>
+            </div>
+            <div class="next-page-container">
+                <div class="next-page" id="next-page-btn">
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="recommend-content-container">
+                <div class="content-header">
+                    Recommendation
+                </div>
+                <div class="recommend-content">
+                    <div class="movie-detail-container recommender"  onclick=movieOnClick(this)>
+                        <img id="re-movie-img-0" src="./img/moonlight.jpg">
+                        <div class="movie-details">
+                            <div class="movie-detail" >
+                                Movie Title: 
+                                <span id="movie-title">
+                                    Moonlight
+                                </span>
+                            </div>
+                            <div class="movie-detail" >
+                                Genre: 
+                                <span id="movie-genre">
+                                    Drama, LGBT, Comedy
+                                </span>
+                            </div>
+                            <div class="movie-detail" >
+                                Year:
+                                <span id="movie-year">
+                                    2016
+                                </span>
+                            </div>
+                            <div class="movie-detail" >
+                                Language:
+                                <span id="movie-language">
+                                    English
+                                </span>
+                            </div>
+                        </div>
+                        <br><br>
+                    </div>
+                    <div class="movie-detail-container recommender"  onclick=movieOnClick(this)>
+                        <img id="re-movie-img-1" src="./img/moonlight.jpg">
+                        <div class="movie-details">
+                            <div class="movie-detail" >
+                                Movie Title: 
+                                <span id="movie-title">
+                                    Moonlight
+                                </span>
+                            </div>
+                            <div class="movie-detail" >
+                                Genre: 
+                                <span id="movie-genre">
+                                    Drama, LGBT, Comedy
+                                </span>
+                            </div>
+                            <div class="movie-detail" >
+                            Year:
+                            <span id="movie-year">
+                                2016
+                            </span>
+                        </div>
+                        <div class="movie-detail" >
+                            Language:
+                            <span id="movie-language">
+                                English
+                            </span>
+                        </div>
+                        </div>
+                        <br><br>
+                    </div>
+                </div>
+            </div>
+    
+            
         </div>
     </div>
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content" id="history-content">
+            <span class="close">&times;</span>
+            History
+        </div>
+    </div>
+    <div class="login-modal">
+        <div class="login">
+            <select name="age" id="age-select" class="select">
+                <option value="" disabled selected hidden>Select your age:</option>
+                <option value="0">0-9</option>
+                <option value="1">10-19</option>
+                <option value="2">20-29</option>
+                <option value="3">30-39</option>
+                <option value="4">40-49</option>
+                <option value="5">50-59</option>
+                <option value="6">60+</option>
+            </select>
+            <select name="gender" id="gender-select" class="select">
+                <option value="" disabled selected hidden>Select your gender:</option>
+                <option value="0">Male</option>
+                <option value="1">Female</option>
+                <option value="2">Else</option>
+            </select>
+            <div class="next-button">Next</div>
+        </div>
+    </div>
+    <script src="./mainpage-script.js"></script>
 </body>
 </html>
