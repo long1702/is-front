@@ -215,6 +215,8 @@ var default_movie_list = []
 var age, gender
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
+var movie_close = document.getElementsByClassName("movie-detail-close")[0];
+var movie_modal = document.getElementsByClassName("movie-modal")[0];
 
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
@@ -230,6 +232,9 @@ span.onclick = function() {
     modal.style.display = "none";
 }
 
+movie_close.onclick = function() {
+    movie_modal.style.display = "none";
+}
 var next = document.getElementById("next-page-btn");
 var count = 0;
 next.onclick = function(){
@@ -257,6 +262,19 @@ next.onclick = function(){
 var recommend_movie
 function movieOnClick(movie){
     //console.log(movie.getAttribute("isChecked"))
+     movie_modal.style.display = "block"
+    movie_id = movie.getAttribute("data-value")
+    movie_array = JSON.parse(httpGet('https://api.themoviedb.org/3/movie/'+movie_id+'?api_key=2879ea6fbf2c6700e7c0f220bd40b52e&language=en-US'))
+    movie_detail_container = document.getElementsByClassName("movie-modal-main-content")[0]
+    movie_img = document.getElementsByClassName("image-container")[0]
+    console.log( movie_detail_container.children[0].children[0])
+    movie_img.children[0].src = "http://image.tmdb.org/t/p/w185"+movie_array.poster_path;
+    movie_detail_container.children[0].children[0].innerHTML = movie_array.original_title;
+    movie_detail_container.children[1].children[0].innerHTML = genre_jo[""+movie_array.genres[0].id]
+    movie_detail_container.children[2].children[0].innerHTML = movie_array.release_date.substring(0,4)
+    movie_detail_container.children[3].children[0].innerHTML = language_jo[movie_array.spoken_languages[0].iso_639_1]
+   
+
     if (!(movie.getAttribute("isChecked") === 'true')){
         //console.log("abc")
         movie.style.backgroundColor = "rgba(0, 209, 256, 0.5)"
@@ -267,7 +285,7 @@ function movieOnClick(movie){
         var body ={
             "age": $("#age-select").val(),
             "gender": $("#gender-select").val(),
-            "movie" : movie.getAttribute("data-value")
+            "movie" : "a"
         }
         console.log(body)
           
@@ -278,6 +296,9 @@ function movieOnClick(movie){
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
+    }
+    if (event.target == movie_modal){
+        movie_modal.style.display = "none";
     }
 }
 
@@ -300,19 +321,10 @@ function getInfo(movie){
         movie_detail_container[c].setAttribute("isChecked", false)
         movie_detail_container[c].style.display = "flex";
         movie_detail_container[c].children[0].src = "http://image.tmdb.org/t/p/w185"+movie_array.poster_path;
-        if (movie_array.title.length > 13){
-            title = movie_array.title.substring(0,10)+"..."
-        }
-        else{
-            title = movie_array.title
-        }
-        movie_detail_container[c].children[1].children[0].children[0].innerHTML = title;
-        //console.log(genre_jo[""+movie_array[i].genre_ids[0]]);
-        //var genre_str = genre_jo[""+movie_array[i].genre_ids[0]]
         movie_detail_container[c].children[1].children[1].children[0].innerHTML = genre_jo[""+movie_array.genres[0].id]
-        movie_detail_container[c].children[1].children[2].children[0].innerHTML = movie_array.release_date.substring(0,4)
-        movie_detail_container[c].children[1].children[3].children[0].innerHTML = language_jo[movie_array.spoken_languages[0].iso_639_1]
-    
+        title = movie_array.title
+       
+        movie_detail_container[c].children[1].children[0].children[0].innerHTML = title;
     }
 }
 function httpPost(theUrl, body)
@@ -338,18 +350,11 @@ function extract_10_movie(movie_array){
         movie_detail_container[i].setAttribute("isChecked", false)
         movie_detail_container[i].style.display = "flex";
         movie_detail_container[i].children[0].src = "http://image.tmdb.org/t/p/w185"+movie_array[i].poster_path;
-        if (movie_array[i].original_title.length > 13){
-            title = movie_array[i].original_title.substring(0,10)+"..."
-        }
-        else{
-            title = movie_array[i].original_title
-        }
+        
+        title = movie_array[i].original_title
+        console.log(movie_array[i].genre_ids)
         movie_detail_container[i].children[1].children[0].children[0].innerHTML = title;
-        //console.log(genre_jo[""+movie_array[i].genre_ids[0]]);
-        //var genre_str = genre_jo[""+movie_array[i].genre_ids[0]]
         movie_detail_container[i].children[1].children[1].children[0].innerHTML = genre_jo[""+movie_array[i].genre_ids[0]]
-        movie_detail_container[i].children[1].children[2].children[0].innerHTML = movie_array[i].release_date.substring(0,4)
-        movie_detail_container[i].children[1].children[3].children[0].innerHTML = language_jo[movie_array[i].original_language]
     }
 }
 $( document ).ready(function() {

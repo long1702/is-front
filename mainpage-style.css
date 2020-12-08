@@ -84,7 +84,14 @@ body{
     color: #FFFFFF;
     font-family: Roboto;
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 700;
+    width: 100%;
+}
+.movie-detail span{
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 400;
     width: 100%;
 }
 .history-content{
@@ -190,6 +197,75 @@ body{
     color: rgba(256, 0, 0, 0.9);
     text-decoration: none;
     cursor: pointer;
+}
+
+.movie-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* Modal Content/Box */
+.movie-modal-content-container {
+    background-color:rgba(0, 0, 00, 0.9);
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 50px;
+    border-radius: 8px;
+    width: 80%; 
+    font-family: Roboto;
+    font-size: 36px;
+    color: #FFFFFF;
+    font-weight: 700;
+    height: fit-content;
+    
+    /* Could be more or less, depending on screen size */
+}
+.movie-modal-content{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.movie-modal-main-content{
+    margin-top: 20px; 
+}
+.movie-modal-content .image-container{
+    height: 500px;
+}
+.movie-modal-content .image-container img{
+    height: 100%;
+    object-fit: cover;
+    margin-right: 50px;
+}
+.movie-modal-content .movie-detail-container{
+    background-color: rgba(256, 256, 256, 0.2) !important;
+    cursor: auto !important;
+    width: 90% !important;
+    height: 125px;
+}
+
+.movie-detail-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.movie-detail-close:hover,
+.movie-detail-close:focus {
+    color: rgba(256, 0, 0, 0.9);
+    text-decoration: none;
+    cursor: pointer;
+}
+.movie-modal-detail span{
+    font-weight: 400;
 }
 .login-modal{
     position: fixed; /* Stay in place */
