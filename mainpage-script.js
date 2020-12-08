@@ -262,8 +262,9 @@ next.onclick = function(){
 var recommend_movie
 function movieOnClick(movie){
     //console.log(movie.getAttribute("isChecked"))
-     movie_modal.style.display = "block"
+    movie_modal.style.display = "block"
     movie_id = movie.getAttribute("data-value")
+    console.log(movie_id)
     movie_array = JSON.parse(httpGet('https://api.themoviedb.org/3/movie/'+movie_id+'?api_key=2879ea6fbf2c6700e7c0f220bd40b52e&language=en-US'))
     movie_detail_container = document.getElementsByClassName("movie-modal-main-content")[0]
     movie_img = document.getElementsByClassName("image-container")[0]
@@ -283,9 +284,9 @@ function movieOnClick(movie){
         //console.log(movie.getAttribute("data-value"))
         movie.setAttribute("isChecked", true)
         var body ={
-            "age": $("#age-select").val(),
-            "gender": $("#gender-select").val(),
-            "movie" : "a"
+            "genre": movie_array.genres[0].id,
+            "year": movie_array.release_date.substring(0,4),
+            "language" : movie_array.spoken_languages[0].iso_639_1
         }
         console.log(body)
           
@@ -309,21 +310,21 @@ function httpGet(theUrl)
     xmlHttp.send( null );
     return xmlHttp.responseText;
 }
-function getInfo(movie){
-    
-    console.log(movie.movies)
-    for ( c = 0; c < movie.movies.length ; c++){
-        movie_array = JSON.parse(httpGet('https://api.themoviedb.org/3/movie/'+movie.movies[c]+'?api_key=2879ea6fbf2c6700e7c0f220bd40b52e&language=en-US'))
+function getInfo(data){
+    url = "https://api.themoviedb.org/3/discover/movie?api_key=2879ea6fbf2c6700e7c0f220bd40b52e&language="+data.language+"&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres="+data.genre
+    movie_array = JSON.parse(httpGet(url)).results
+    init_val = Math.floor(Math.random() * (movie_array.length - 1))
+    for ( c = 0; c < 2 ; c++){
+        
         //console.log(movie_array)
         movie_detail_container = document.getElementsByClassName("recommender")
         movie_detail_container[c].style.backgroundColor = "rgba(256, 256, 256, 0.2)"
-        movie_detail_container[c].setAttribute("data-value", movie_array.id);
+        movie_detail_container[c].setAttribute("data-value", movie_array[init_val + c].id);
         movie_detail_container[c].setAttribute("isChecked", false)
         movie_detail_container[c].style.display = "flex";
-        movie_detail_container[c].children[0].src = "http://image.tmdb.org/t/p/w185"+movie_array.poster_path;
-        movie_detail_container[c].children[1].children[1].children[0].innerHTML = genre_jo[""+movie_array.genres[0].id]
-        title = movie_array.title
-       
+        movie_detail_container[c].children[0].src = "http://image.tmdb.org/t/p/w185"+movie_array[init_val + c].poster_path;
+        movie_detail_container[c].children[1].children[1].children[0].innerHTML = genre_jo[""+ movie_array[init_val + c].genre_ids[0]]
+        title = movie_array[init_val + c].title
         movie_detail_container[c].children[1].children[0].children[0].innerHTML = title;
     }
 }
@@ -361,4 +362,9 @@ $( document ).ready(function() {
     response = httpGet('https://api.themoviedb.org/3/movie/popular?api_key=2879ea6fbf2c6700e7c0f220bd40b52e&language=en-US&page=1')
     default_movie_list = JSON.parse(response).results
     extract_10_movie(default_movie_list)
+    data = {
+        "genre": 28,
+        "language": "en-US"
+    }
+    getInfo(data)
 });
