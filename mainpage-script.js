@@ -289,13 +289,13 @@ function movieOnClick(movie){
         //console.log(movie.getAttribute("data-value"))
         movie.setAttribute("isChecked", true)
         var body ={
-            "genre": listgenre,
+            "genre": listgenre[0],
             "year": movie_array.release_date.substring(0,4),
             "language" : movie_array.spoken_languages[0].iso_639_1
         }
         console.log(body)
-          
-        httpPost("http://localhost:3000/recommend", JSON.stringify(body))
+        getInfo(body)
+        //httpPost("http://localhost:3000/recommend", JSON.stringify(body))
     }
 }
 // When the user clicks anywhere outside of the modal, close it
@@ -376,9 +376,5 @@ $( document ).ready(function() {
     response = httpGet('https://api.themoviedb.org/3/movie/popular?api_key=2879ea6fbf2c6700e7c0f220bd40b52e&language=en-US&page=1')
     default_movie_list = JSON.parse(response).results
     extract_10_movie(default_movie_list)
-    data = {
-        "genre": 28,
-        "language": "en-US"
-    }
-    getInfo(data)
+
 });
